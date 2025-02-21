@@ -38,6 +38,12 @@ dependencies:
   provider: ^6.1.2
   english_words: ^4.0.0
 
+# Hive pks
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  get_it: ^7.6.0
+  dartz: ^0.10.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
