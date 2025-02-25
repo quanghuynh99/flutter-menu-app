@@ -44,6 +44,9 @@ dependencies:
   get_it: ^7.6.0
   dartz: ^0.10.1
 
+# GetIt
+get_it: ^7.6.7
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

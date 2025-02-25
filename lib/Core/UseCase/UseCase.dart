@@ -37,3 +37,24 @@ class DeleteTodo extends UseCase<void, String> {
     return repository.deleteTodo(id);
   }
 }
+
+class UpdateTodo extends UseCase<void, TodoEntity> {
+  final TodoRepository repository;
+  UpdateTodo(this.repository);
+
+  @override
+  Future<Either<Failure, void>> excute(TodoEntity todo) {
+    return repository.updateTodo(todo);
+  }
+}
+
+class TogglePin extends UseCase<void, String> {
+  final TodoRepository repository;
+
+  TogglePin(this.repository);
+
+  @override
+  Future<Either<Failure, void>> excute(String id) {
+    return repository.togglePin(id);
+  }
+}
