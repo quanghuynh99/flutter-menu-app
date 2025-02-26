@@ -6,7 +6,7 @@ import 'package:flutter_todo_web_desktop/Domain/Entities/todo_entity.dart';
 import 'package:flutter_todo_web_desktop/Core/Error/failure.dart';
 
 abstract class TodoRepository {
-  Future<Either<Failure, List<TodoEntity>>> getTodos(String categoryId);
+  Future<Either<Failure, List<TodoModel>>> getTodos(String categoryId);
   Future<Either<Failure, void>> addTodo(TodoEntity todo);
   Future<Either<Failure, void>> updateTodo(TodoEntity todo);
   Future<Either<Failure, void>> deleteTodo(String id);
@@ -41,7 +41,7 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<Failure, List<TodoEntity>>> getTodos(String categoryId) async {
+  Future<Either<Failure, List<TodoModel>>> getTodos(String categoryId) async {
     try {
       final todos = await localDataSource.getTodos(categoryId);
       return Right(todos);

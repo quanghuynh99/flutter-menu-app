@@ -43,9 +43,17 @@ dependencies:
   hive_flutter: ^1.1.0
   get_it: ^7.6.0
   dartz: ^0.10.1
+  uuid: ^4.5.1
+  lottie: ^3.3.1
 
 # GetIt
 get_it: ^7.6.7
+
+# Uuid
+uuid: ^4.4.2
+
+# Lottie
+lottie: ^2.7.0
 
 dev_dependencies:
   flutter_test:
@@ -70,9 +78,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/1111.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

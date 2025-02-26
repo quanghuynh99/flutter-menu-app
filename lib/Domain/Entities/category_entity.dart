@@ -1,15 +1,17 @@
-import 'package:flutter_todo_web_desktop/Domain/Entities/todo_entity.dart';
-
 class CategoryEntity {
   final String id;
-  final String name;
-  final String icon;
-  final List<TodoEntity> todos;
+  final DateTime date;
+  final String title;
+  final String description;
+  final DateTime createdAt;
+  final DateTime? updatedAt;
 
   CategoryEntity({
     required this.id,
-    required this.name,
-    required this.icon,
-    required this.todos,
+    required this.date,
+    required this.title,
+    this.description = '',
+    required this.createdAt,
+    this.updatedAt,
   });
 }

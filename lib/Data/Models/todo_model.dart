@@ -6,18 +6,20 @@ class TodoModel extends TodoEntity {
     required super.title,
     required super.description,
     required super.createTime,
+    required super.updatedAt,
     required super.priority,
     required super.categoryId,
     super.isPinned,
     super.isCompleted,
   });
 
-  factory TodoModel.fromJson(Map<String, dynamic> json) {
+  factory TodoModel.fromMap(Map<String, dynamic> json) {
     return TodoModel(
       id: json['id'],
       title: json['title'],
       description: json['description'],
       createTime: DateTime.parse(json['createTime']),
+      updatedAt: DateTime.parse(json['updatedAt']),
       priority: Priority.values[json['priority']],
       categoryId: json['categoryId'],
       isPinned: json['isPinned'],
@@ -25,16 +27,39 @@ class TodoModel extends TodoEntity {
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
       'description': description,
       'createTime': createTime.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
       'priority': priority.index,
       'categoryId': categoryId,
       'isPinned': isPinned,
       'isCompleted': isCompleted,
     };
+  }
+
+  TodoModel copyWith(
+      {String? id,
+      String? title,
+      String? description,
+      DateTime? createTime,
+      DateTime? updatedAt,
+      Priority? priority,
+      String? categoryId,
+      bool? isPinned,
+      bool? isCompleted}) {
+    return TodoModel(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        createTime: createTime ?? this.createTime,
+        updatedAt: updatedAt ?? this.updatedAt,
+        priority: priority ?? this.priority,
+        categoryId: categoryId ?? this.categoryId,
+        isPinned: isPinned ?? this.isPinned,
+        isCompleted: isCompleted ?? this.isCompleted);
   }
 }

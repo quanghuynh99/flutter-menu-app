@@ -2,30 +2,34 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_todo_web_desktop/Core/Error/failure.dart';
-import 'package:flutter_todo_web_desktop/Domain/Entities/todo_entity.dart';
+import 'package:flutter_todo_web_desktop/Data/Models/todo_model.dart';
 import 'package:flutter_todo_web_desktop/Domain/Repositories/todo_repository.dart';
 
 abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> excute(Params params);
 }
 
-class GetTodos extends UseCase<List<TodoEntity>, String> {
+class NoParams {
+  const NoParams();
+}
+
+class GetTodos extends UseCase<List<TodoModel>, String> {
   final TodoRepository repository;
   GetTodos(this.repository);
 
   @override
-  Future<Either<Failure, List<TodoEntity>>> excute(String categoryId) {
+  Future<Either<Failure, List<TodoModel>>> excute(String categoryId) {
     return repository.getTodos(categoryId);
   }
 }
 
-class AddTodo extends UseCase<void, TodoEntity> {
+class AddTodo extends UseCase<void, TodoModel> {
   final TodoRepository repository;
 
   AddTodo(this.repository);
 
   @override
-  Future<Either<Failure, void>> excute(TodoEntity todo) {
+  Future<Either<Failure, void>> excute(TodoModel todo) {
     return repository.addTodo(todo);
   }
 }
@@ -40,19 +44,18 @@ class DeleteTodo extends UseCase<void, String> {
   }
 }
 
-class UpdateTodo extends UseCase<void, TodoEntity> {
+class UpdateTodo extends UseCase<void, TodoModel> {
   final TodoRepository repository;
   UpdateTodo(this.repository);
 
   @override
-  Future<Either<Failure, void>> excute(TodoEntity todo) {
+  Future<Either<Failure, void>> excute(TodoModel todo) {
     return repository.updateTodo(todo);
   }
 }
 
 class TogglePin extends UseCase<void, String> {
   final TodoRepository repository;
-
   TogglePin(this.repository);
 
   @override

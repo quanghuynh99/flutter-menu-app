@@ -1,10 +1,10 @@
-import 'package:flutter_todo_web_desktop/Domain/Entities/category_entity.dart';
-import 'package:flutter_todo_web_desktop/Domain/Entities/todo_entity.dart';
+import 'package:flutter_todo_web_desktop/Data/Models/category_model.dart';
+import 'package:flutter_todo_web_desktop/Data/Models/todo_model.dart';
 
 class CategoryState {
   final bool isLoading;
   final String? error;
-  final List<CategoryEntity> categories;
+  final List<CategoryModel> categories;
 
   const CategoryState(
       {required this.isLoading, this.error, required this.categories});
@@ -17,7 +17,7 @@ class CategoryState {
     return const CategoryState(isLoading: true, categories: []);
   }
 
-  factory CategoryState.loaded(List<CategoryEntity> categories) {
+  factory CategoryState.loaded(List<CategoryModel> categories) {
     return CategoryState(
       isLoading: false,
       categories: categories,
@@ -35,7 +35,7 @@ class CategoryState {
   CategoryState copyWith({
     bool? isLoading,
     String? error,
-    List<CategoryEntity>? categories,
+    List<CategoryModel>? categories,
   }) {
     return CategoryState(
       isLoading: isLoading ?? this.isLoading,
@@ -48,7 +48,7 @@ class CategoryState {
 class TodoState {
   final bool isLoading;
   final String? error;
-  final List<TodoEntity> todos;
+  final List<TodoModel> todos;
 
   const TodoState({required this.isLoading, this.error, required this.todos});
 
@@ -60,7 +60,7 @@ class TodoState {
     return const TodoState(isLoading: true, todos: []);
   }
 
-  factory TodoState.loaded(List<TodoEntity> todos) {
+  factory TodoState.loaded(List<TodoModel> todos) {
     return TodoState(
       isLoading: false,
       todos: todos,
@@ -78,7 +78,7 @@ class TodoState {
   TodoState copyWith({
     bool? isLoading,
     String? error,
-    List<TodoEntity>? todos,
+    List<TodoModel>? todos,
   }) {
     return TodoState(
       isLoading: isLoading ?? this.isLoading,

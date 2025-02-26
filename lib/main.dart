@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
-import 'package:flutter_todo_web_desktop/Presentation/Views/my_home_page.dart';
+import 'package:flutter_todo_web_desktop/Presentation/Views/category_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -10,8 +9,6 @@ void main() async {
   await init();
   runApp(const MyApp());
 }
-
-init() {}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,37 +21,14 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         ),
-        home: MyHomePage(),
+        home: TodoPage(),
       ),
     );
   }
 }
 
 class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-  var favorites = <WordPair>[];
-
-  void generateNewWord() {
-    current = WordPair.random();
-    notifyListeners();
-  }
-
-  void getNext() {
-    current = WordPair.random();
-    for (final word in favorites) {
-      print(word);
-    }
-    notifyListeners();
-  }
-
-  void toggleFavorite() {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
-    } else {
-      favorites.add(current);
-    }
-    notifyListeners();
-  }
+  
 }
