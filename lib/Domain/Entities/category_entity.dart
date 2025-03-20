@@ -1,17 +1,22 @@
 class CategoryEntity {
   final String id;
-  final DateTime date;
+  final String date;
   final String title;
   final String description;
-  final DateTime createdAt;
-  final DateTime? updatedAt;
+  final String createdAt;
+  final String? updatedAt;
+  final String icon;
+  final int completedTasks;
+  final int totalTasks;
 
-  CategoryEntity({
-    required this.id,
-    required this.date,
-    required this.title,
-    this.description = '',
-    required this.createdAt,
-    this.updatedAt,
-  });
+  CategoryEntity(
+      {required this.id,
+      required this.date,
+      required this.title,
+      this.description = '',
+      required this.createdAt,
+      this.updatedAt,
+      required this.icon,
+      required this.completedTasks,
+      required this.totalTasks});
 }

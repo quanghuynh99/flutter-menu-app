@@ -5,49 +5,61 @@ class CategoryModel extends CategoryEntity {
       {required super.id,
       required super.date,
       required super.title,
-      required description,
+      required super.description,
       required super.createdAt,
-      DateTime? updatedAt});
+      super.updatedAt,
+      required super.icon,
+      required super.completedTasks,
+      required super.totalTasks});
 
-  factory CategoryModel.fromMap(Map<dynamic, dynamic> map) {
+  factory CategoryModel.fromMap(Map<String, dynamic> map) {
     return CategoryModel(
       id: map['id'],
-      date: DateTime.fromMillisecondsSinceEpoch(map['date']),
+      date: map['date'],
       title: map['title'],
-      description: map['description'] ?? '',
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
-      updatedAt: map['updatedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'])
-          : null,
+      description: map['description'],
+      createdAt: map['createdAt'],
+      updatedAt: map['updatedAt'],
+      icon: map['icon'],
+      completedTasks: map['completedTasks'],
+      totalTasks: map['totalTasks'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'date': date.millisecondsSinceEpoch,
+      'date': date,
       'title': title,
       'description': description,
-      'createdAt': createdAt.millisecondsSinceEpoch,
-      'updatedAt': updatedAt?.millisecondsSinceEpoch,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'icon': icon,
+      'completedTasks': completedTasks,
+      'totalTasks': totalTasks
     };
   }
 
   CategoryModel copyWith({
     String? id,
-    DateTime? date,
+    String? date,
     String? title,
     String? description,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    String? createdAt,
+    String? updatedAt,
+    String? icon,
+    int? completedTasks,
+    int? totalTasks,
   }) {
     return CategoryModel(
-      id: id ?? this.id,
-      date: date ?? this.date,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-    );
+        id: id ?? this.id,
+        date: date ?? this.date,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        icon: icon ?? this.icon,
+        completedTasks: completedTasks ?? this.completedTasks,
+        totalTasks: totalTasks ?? this.totalTasks);
   }
 }

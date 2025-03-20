@@ -15,7 +15,7 @@ abstract class TodoLocalDataSource {
 
   Future<List<CategoryModel>> getCategories();
   Future<CategoryModel?> getCategoryById(String id);
-  Future<List<CategoryModel>> getCategoriesByDate(DateTime date);
+  Future<List<CategoryModel>> getCategoriesByDate(String date);
   Future<void> addCategory(CategoryModel category);
   Future<void> updateCategory(CategoryModel category);
   Future<void> deleteCategory(String id);
@@ -63,7 +63,7 @@ class TodolocaldatasourceImpl implements TodoLocalDataSource {
 
     if (index != -1) {
       todos[index] = todo.copyWith(
-        updatedAt: DateTime.now(),
+        updatedAt: DateTime.now().toIso8601String(),
       );
       await _saveTodos(todos);
     }
@@ -111,9 +111,18 @@ class TodolocaldatasourceImpl implements TodoLocalDataSource {
 
   @override
   Future<void> deleteCategory(String id) async {
+    print('LocalDataSource: Starting deleteCategory for id: $id');
     final categories = _getAllCategories();
-    categories.removeWhere((item) => item.id == id);
-    await _saveCategories(categories);
+    print(
+        'Raw categories before delete: ${categories.map((c) => c.id).toList()}');
+
+    List<CategoryModel> categoryList = List.from(categories);
+    categoryList.removeWhere((item) => item.id == id);
+    print('Categories after delete: ${categoryList.map((c) => c.id).toList()}');
+
+    await _saveCategories(categoryList);
+    print(
+        'LocalDataSource: Category deleted and saved, new length: ${categoryList.length}');
   }
 
   @override
@@ -122,8 +131,7 @@ class TodolocaldatasourceImpl implements TodoLocalDataSource {
   }
 
   @override
-  Future<List<CategoryModel>> getCategoriesByDate(DateTime date) {
-    // TODO: implement getCategoriesByDate
+  Future<List<CategoryModel>> getCategoriesByDate(String date) {
     throw UnimplementedError();
   }
 
@@ -138,7 +146,8 @@ class TodolocaldatasourceImpl implements TodoLocalDataSource {
     final categories = _getAllCategories();
     final index = categories.indexWhere((item) => item.id == category.id);
     if (index != -1) {
-      categories[index] = category.copyWith(updatedAt: DateTime.now());
+      categories[index] =
+          category.copyWith(updatedAt: DateTime.now().toIso8601String());
       await _saveCategories(categories);
     }
   }
@@ -159,13 +168,10 @@ class TodolocaldatasourceImpl implements TodoLocalDataSource {
   }
 
   List<CategoryModel> _getAllCategories() {
-    // final categories = categoryBox.values.toList();
-    final categoriesMap =
-        categoryBox.get(categoriesKey, defaultValue: {}) ?? {};
-    final categories = categoriesMap.values
-        .map((item) => CategoryModel.fromMap(item))
-        .toList();
-    return categories;
+    final categoriesMap = categoryBox.get(categoriesKey, defaultValue: {}) ?? {};
+  return categoriesMap.values
+      .map((item) => CategoryModel.fromMap(item))
+      .toList();
   }
 
   Future<void> _saveCategories(List<CategoryModel> categories) async {

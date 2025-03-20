@@ -4,9 +4,8 @@ class TodoEntity {
   final String id;
   final String title;
   final String description;
-  final DateTime createTime;
-  final DateTime updatedAt;
-  final Priority priority;
+  final String createTime;
+  final String updatedAt;
   final String categoryId;
   final bool isPinned;
   final bool isCompleted;
@@ -17,7 +16,6 @@ class TodoEntity {
     required this.description,
     required this.createTime,
     required this.updatedAt,
-    required this.priority,
     required this.categoryId,
     this.isPinned = false,
     this.isCompleted = false,
