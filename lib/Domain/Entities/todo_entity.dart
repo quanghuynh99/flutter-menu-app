@@ -4,8 +4,8 @@ class TodoEntity {
   final String id;
   final String title;
   final String description;
-  final DateTime createTime;
-  final Priority priority;
+  final String createTime;
+  final String updatedAt;
   final String categoryId;
   final bool isPinned;
   final bool isCompleted;
@@ -15,29 +15,9 @@ class TodoEntity {
     required this.title,
     required this.description,
     required this.createTime,
-    required this.priority,
+    required this.updatedAt,
     required this.categoryId,
     this.isPinned = false,
     this.isCompleted = false,
   });
-
-  TodoEntity copyWith(
-      {String? id,
-      String? title,
-      String? description,
-      DateTime? createTime,
-      Priority? priority,
-      String? categoryId,
-      bool? isPinned,
-      bool? isCompleted}) {
-    return TodoEntity(
-        id: id ?? this.id,
-        title: title ?? this.title,
-        description: description ?? this.description,
-        createTime: createTime ?? this.createTime,
-        priority: priority ?? this.priority,
-        categoryId: categoryId ?? this.categoryId,
-        isPinned: isPinned ?? this.isPinned,
-        isCompleted: isCompleted ?? this.isCompleted);
-  }
 }

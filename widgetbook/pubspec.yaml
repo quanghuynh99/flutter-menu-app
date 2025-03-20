@@ -1,0 +1,25 @@
+name: widgetbook_workspace
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_todo_web_desktop:
+    path: ../
+  widgetbook: ^3.11.0  # Phiên bản mới nhất của widgetbook tại thời điểm hiện tại
+  widgetbook_annotation: ^3.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.12  # Thêm build_runner để sinh mã nguồn
+  widgetbook_generator: ^3.10.0
+
+flutter:
+  uses-material-design: true

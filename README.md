@@ -3,14 +3,46 @@
 A new Flutter project.
 
 ## Getting Started
-
 This project is a starting point for a Flutter application.
+ - Clean architecture implementation
+ - Layout for web/desktop
+ - Widgetbook implementation
 
-A few resources to get you started if this is your first Flutter project:
+## 📌  Project structure
+```
+📂 Project
+├── 📂 Presentation
+│   ├── 📂 Screens
+│   ├── 📂 Components
+│   ├── 📂 Resources
+├── 📂 Domain 
+│   ├── 📂 Entities
+│   ├── 📂 UseCases
+│   ├── 📂 Repositories
+├── 📂 Data
+│   ├── 📂 Networking (future)
+│   ├── 📂 Database
+│   ├── 📂 RepositoriesImpl
+├── 📂 Tests (Future)
+│   ├── 📂 UnitTests
+│   ├── 📂 UITests
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📜 Explanation
+- Presentation 🎨: UI layer, containing ViewControllers, ViewModels, and custom UI components.
+- Domain 🧠: Business logic layer, defining entities, use cases, and repository interfaces.
+- Data 💾: Data sources, API calls, database management, and repository implementations.
+- Core ⚙️: Shared utilities, extensions, and helper classes.
+- Tests 🧪: Unit and UI testing files.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📚 Widgetbook
+ - [x] Empty view
+ - [x] CategoryScreen
+ - [ ] ...
+
+**widget build:**
+ - `flutter pub run build_runner build --delete-conflicting-outputs`
+ - `flutter run`
+**formater**
+- `dart format ./`
+- `dart fix --apply`
